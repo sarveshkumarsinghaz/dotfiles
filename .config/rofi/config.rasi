@@ -1,0 +1,8 @@
+
+//@theme "/home/sk/.local/share/rofi/themes/squared-everforest.rasi"
+
+@theme "/home/sk/.local/share/rofi/themes/spotlight-dark.rasi"
+configuration
+{
+      show-icons: true;
+}
