@@ -15,6 +15,7 @@ colors = {
     "secondary_accent": "#A6E3A1", # Green accent for positive indicators
     "tertiary_accent": "#F9E2AF", # Yellow/Orange accent for warnings/attention
     "red": "#F38BA8",         # Error/Critical
+    "white": "#FFFFFF",         
     "gray_dark": "#45475A",   # Darker gray for inactive elements/separators
     "gray_light": "#6C7086",  # Lighter gray for less prominent text
     "bar_bg": "#181825",      # Slightly lighter than background for the bar itself
@@ -107,35 +108,35 @@ groups.append(
             DropDown(
                 "kitty",
                 terminal,
-                x=0.3, y=0.3, width=0.5, height=0.5,
+                x=0.2, y=0.2, width=0.6, height=0.6,
                 opacity=0.9, # Added opacity for scratchpads
                 on_hide_callback=lazy.window.cmd_disable_floating(),
             ),
             DropDown(
                 "wiremix",
                 f"{terminal} -e wiremix -v output", # aSSUMING WIREMIX RUNS IN TERMINAL
-                x=0.3, y=0.3, width=0.4, height=0.5,
+                x=0.2, y=0.2, width=0.6, height=0.6,
                 opacity=0.9, # Added opacity for scratchpads
                 on_hide_callback=lazy.window.cmd_disable_floating(),
             ),
             DropDown(
                 "bluetui",
                 f"{terminal} -e bluetui", # Assuming bluetui runs in terminal
-                x=0.3, y=0.3, width=0.5, height=0.5,
+                x=0.2, y=0.2, width=0.6, height=0.6,
                 opacity=0.9, # Added opacity for scratchpads
                 on_hide_callback=lazy.window.cmd_disable_floating(),
             ),
             DropDown(
                 "calcurse",
                 f"{terminal} -e calcurse", # Assuming calcurse runs in terminal
-                x=0.3, y=0.3, width=0.5, height=0.5,
+                x=0.2, y=0.2, width=0.6, height=0.6,
                 opacity=0.9, # Added opacity for scratchpads
                 on_hide_callback=lazy.window.cmd_disable_floating(),
             ),
             DropDown(
                 "nmtui",
                 f"{terminal} -e tui-network", # Assuming nmtui runs in terminal
-                x=0.3, y=0.3, width=0.5, height=0.5,
+                x=0.2, y=0.2, width=0.6, height=0.6,
                 opacity=0.9, # Added opacity for scratchpads
                 on_hide_callback=lazy.window.cmd_disable_floating(),
             ),
@@ -186,8 +187,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="JetBrainsMono Nerd Font", # Requires Nerd Font for icons
-    fontsize=13,
+    font="JetBrainsMono Nerd Font Bold", # Requires Nerd Font for icons
+    fontsize=16,
     padding=3,
     background=colors["bar_bg"],
     foreground=colors["foreground"],
@@ -207,19 +208,17 @@ screens = [
                     mouse_callbacks={"Button1": lazy.spawn("rofi -show drun")},
                 ),
                 widget.GroupBox(
-                    font="JetBrainsMono Nerd Font",
-                    fontsize=16,
                     margin_y=3,
                     margin_x=0,
                     padding_y=5,
-                    padding_x=5,
-                    borderwidth=0, # No border for a cleaner look
+                    padding_x=8,
+                    borderwidth=4, # No border for a cleaner look
                     active=colors["primary_accent"],
                     inactive=colors["gray_light"],
-                    rounded=False,
-                    highlight_method="text", # Highlight text only
-                    this_current_screen_border=colors["secondary_accent"], # Green dot for current group
-                    this_screen_border=colors["secondary_accent"],
+                    rounded=True,
+                    highlight_method="block", # Highlight text only
+                    this_current_screen_border=colors["white"],
+                    this_screen_border=colors["red"],
                     other_current_screen_border=colors["gray_dark"],
                     other_screen_border=colors["gray_dark"],
                     foreground=colors["foreground"],
@@ -233,10 +232,10 @@ screens = [
                     scale=0.7,
                 ),
                 #widget.Spacer(length=bar.STRETCH), # Pushes widgets to the right
-                widget.WindowTabs(
+                widget.WindowName(
                     foreground=colors["foreground"],
                     background=colors["bar_bg"],
-                    format='󰖯 {name}', # Added a generic window icon
+                    format=' {name}', # Added a generic window icon
                     empty_group_string="Welcome to your desktop", # Friendly message
                     max_chars=80, #
                     padding=10, #
@@ -256,13 +255,13 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 
-                #widget.CPU(
+                # widget.CPU(
                 #    format=' {load_percent}%', # CPU icon
                 #    foreground=colors["foreground"], #
                 #    background=colors["bar_bg"], #
                 #    padding=5, #
                 #    update_interval=3, #
-                #),
+                # ),
                 # widget.TextBox(
                 #     text="|", #
                 #     foreground=colors["gray_dark"], #
@@ -302,19 +301,19 @@ screens = [
                 #         "Button1": lazy.spawn(f"{terminal} -e tui-network")
                 #     }
                 # ),
-                widget.Systray(
-                    background=colors["bar_bg"], #
-                    padding=5, #
-                ),
-                widget.TextBox(
-                     text="|", #
-                     foreground=colors["gray_dark"], #
-                     background=colors["bar_bg"], #
-                     padding=2, #
-                     fontsize=16, #
-                ),
+                #widget.Systray(
+                #    background=colors["bar_bg"], #
+                #    padding=5, #
+                #),
+                # widget.TextBox(
+                #      text="|", #
+                #      foreground=colors["gray_dark"], #
+                #      background=colors["bar_bg"], #
+                #      padding=2, #
+                #      fontsize=16, #
+                # ),
                 widget.Bluetooth(
-                    default_text='󰂰 {connected_devices}',
+                    default_text=' {connected_devices}',
                     default_show_battery=True,
                     device_battery_format=' 󰥉 {battery}%',
                     mouse_callbacks={
@@ -359,7 +358,18 @@ screens = [
                     }
                 ),
                 widget.TextBox(
-                    text="|", #
+                    text="| ", #
+                    foreground=colors["gray_dark"], #
+                    background=colors["bar_bg"], #
+                    padding=2, #
+                    fontsize=16, #
+                ),
+                widget.Systray(
+                    background=colors["bar_bg"], #
+                    padding=5, #
+                ),
+                widget.TextBox(
+                    text=" |", #
                     foreground=colors["gray_dark"], #
                     background=colors["bar_bg"], #
                     padding=2, #
@@ -401,6 +411,11 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
+    border_focus=colors["primary_accent"],
+    border_normal=colors["gray_dark"],
+    border_width=2,
+    margin=6,
+
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
