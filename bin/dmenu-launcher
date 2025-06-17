@@ -18,7 +18,7 @@ DMENU_PROMPT="   Run: "
 # --- New Geometry Settings ---
 
 # Desired width for dmenu
-DMENU_WIDTH=600 # Example: set your desired width in pixels
+DMENU_WIDTH=880 # Example: set your desired width in pixels
 
 # Calculate X offset for centering
 # This part dynamically gets your screen resolution and calculates the offset.
@@ -27,8 +27,8 @@ SCREEN_WIDTH=$(xdpyinfo | awk '/dimensions:/ {print $2}' | cut -d'x' -f1)
 DMENU_X_OFFSET=$(( (SCREEN_WIDTH - DMENU_WIDTH) / 2 ))
 
 # ADJUSTMENT: Add a positive value to push it right
-#RIGHT_PUSH=140 # Adjust this value (in pixels) to push it more right
-#DMENU_X_OFFSET=$(( DMENU_X_OFFSET + RIGHT_PUSH ))
+RIGHT_PUSH=115 # Adjust this value (in pixels) to push it more right
+DMENU_X_OFFSET=$(( DMENU_X_OFFSET - RIGHT_PUSH ))
 
 # --- End New Geometry Settings ---
 
@@ -43,5 +43,6 @@ dmenu_path | dmenu -fn "$DMENU_FONT" \
                    -y 5 \
                    -z "$DMENU_WIDTH" \
                    -h 30 \
+                   -l 4 \
                    -p "$DMENU_PROMPT" \
                    "$@" | ${SHELL:-"/bin/sh"} &
