@@ -1,0 +1,47 @@
+#!/bin/sh
+#qtile cmd-obj -o cmd -f hide_show_bar
+
+# Font settings
+DMENU_FONT="JetBrain Mono Nerd Font:size=14:weight=normal"
+
+# Dracula theme colors for normal state
+DMENU_NB="#1E1E2E" # Dracula background
+DMENU_NF="#f8f8f2" # Dracula foreground (white-ish)
+
+# Selected item colors
+DMENU_SB="#F9E2AF" # White background when selected
+DMENU_SF="#000000" # Black foreground when selected
+
+# Prompt
+DMENU_PROMPT="   Run: "
+
+# --- New Geometry Settings ---
+
+# Desired width for dmenu
+DMENU_WIDTH=600 # Example: set your desired width in pixels
+
+# Calculate X offset for centering
+# This part dynamically gets your screen resolution and calculates the offset.
+# xdpyinfo is generally reliable.
+SCREEN_WIDTH=$(xdpyinfo | awk '/dimensions:/ {print $2}' | cut -d'x' -f1)
+DMENU_X_OFFSET=$(( (SCREEN_WIDTH - DMENU_WIDTH) / 2 ))
+
+# ADJUSTMENT: Add a positive value to push it right
+#RIGHT_PUSH=140 # Adjust this value (in pixels) to push it more right
+#DMENU_X_OFFSET=$(( DMENU_X_OFFSET + RIGHT_PUSH ))
+
+# --- End New Geometry Settings ---
+
+# Execute dmenu_run with the specified options
+# Added -x for x-offset and -z for width
+dmenu_path | dmenu -fn "$DMENU_FONT" \
+                   -nb "$DMENU_NB" \
+                   -nf "$DMENU_NF" \
+                   -sb "$DMENU_SB" \
+                   -sf "$DMENU_SF" \
+                   -x "$DMENU_X_OFFSET" \
+                   -y 5 \
+                   -z "$DMENU_WIDTH" \
+                   -h 30 \
+                   -p "$DMENU_PROMPT" \
+                   "$@" | ${SHELL:-"/bin/sh"} &
