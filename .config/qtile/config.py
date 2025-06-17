@@ -9,16 +9,17 @@ from libqtile.utils import guess_terminal
 # --- Color Palette (Sophisticated Dark Theme) ---
 # Inspired by a professional dark theme with subtle accents
 colors = {
-    "background": "#1E1E2E",  # Darkest background (similar to Dracula/Catppuccin Midnight)
+    "background": "#0e1419",  # Darkest background (similar to Dracula/Catppuccin Midnight)
     "foreground": "#CDD6F4",  # Light text for contrast
     "primary_accent": "#89B4FA", # Blue accent for active elements
     "secondary_accent": "#A6E3A1", # Green accent for positive indicators
     "tertiary_accent": "#F9E2AF", # Yellow/Orange accent for warnings/attention
     "red": "#F38BA8",         # Error/Critical
     "white": "#FFFFFF",         
+    "black": "#000000",         
     "gray_dark": "#45475A",   # Darker gray for inactive elements/separators
     "gray_light": "#6C7086",  # Lighter gray for less prominent text
-    "bar_bg": "#181825",      # Slightly lighter than background for the bar itself
+    "bar_bg": "#0e1419",      # Slightly lighter than background for the bar itself
 }
 
 
@@ -56,8 +57,7 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "d", lazy.spawn(os.path.expanduser("~/.config/rofi/scripts/launcher_t3")), desc="Open rofi window"),
-    Key([mod, "shift"], "f", lazy.spawn("dolphin"), desc="Open rofi window"),
+    Key([mod], "d", lazy.spawn("dolphin"), desc="Open dolphin window"),
     Key([mod], "w", lazy.spawn("brave --password-store=basic %U"), desc="Launch Chromium"),
     Key([mod], "e", lazy.spawn(f"{terminal} -e yazi"), desc="File Launcher"),
     Key([mod, "shift"], "e", lazy.spawn(f"{terminal} --hold sudo yazi"), desc="File Launcher"),
@@ -203,7 +203,7 @@ screens = [
         top=bar.Bar(
             [
                 widget.TextBox(
-                    text="  ", # Arch Linux icon, large and distinct
+                    text="", # Arch Linux icon, large and distinct
                     fontsize=20,
                     foreground=colors["primary_accent"],
                     background=colors["bar_bg"],
@@ -216,10 +216,12 @@ screens = [
                     padding_y=5,
                     padding_x=8,
                     borderwidth=4, # No border for a cleaner look
-                    active=colors["primary_accent"],
+                    active=colors["white"],
                     inactive=colors["gray_light"],
                     rounded=True,
-                    highlight_method="block", # Highlight text only
+                    highlight_color=colors["bar_bg"],
+                    block_highlight_text_color=colors["white"],
+                    highlight_method="line", # Highlight text only
                     this_current_screen_border=colors["white"],
                     this_screen_border=colors["red"],
                     other_current_screen_border=colors["gray_dark"],
@@ -257,7 +259,6 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                
                 # widget.CPU(
                 #    format=' {load_percent}%', # CPU icon
                 #    foreground=colors["foreground"], #
@@ -378,18 +379,14 @@ screens = [
                     padding=2, #
                     fontsize=16, #
                 ),
-                widget.TextBox(
-                    text='[X]', #
+                widget.Image(
+                    filename='/home/sk/dotfiles/.config/qtile/power-on.png', #
                     foreground=colors["red"], #
                     background=colors["bar_bg"], #
                     padding=10, #
                     mouse_callbacks={
                         "Button1": lazy.spawn( os.path.expanduser("~/.config/rofi/scripts/powermenu_t2"))
                     } #
-                ),
-                widget.TextBox(
-                    text=" ", # Small buffer at the end
-                    background=colors["bar_bg"], #
                 ),
             ],
             30, # Slightly increased bar height for presence
