@@ -56,17 +56,20 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "d", lazy.spawn("rofi -show drun"), desc="Open rofi window"),
-    Key([mod], "w", lazy.spawn("chromium"), desc="Launch Chromium"),
+    Key([mod], "d", lazy.spawn(os.path.expanduser("~/.config/rofi/scripts/launcher_t3")), desc="Open rofi window"),
+    Key([mod, "shift"], "f", lazy.spawn("dolphin"), desc="Open rofi window"),
+    Key([mod], "w", lazy.spawn("brave --password-store=basic %U"), desc="Launch Chromium"),
     Key([mod], "e", lazy.spawn(f"{terminal} -e yazi"), desc="File Launcher"),
     Key([mod, "shift"], "e", lazy.spawn(f"{terminal} --hold sudo yazi"), desc="File Launcher"),
     Key([mod, "control"], "l", lazy.spawn("betterlockscreen -l dim"), desc="Lock screen"),
-    Key([mod], "x", lazy.spawn(os.path.expanduser("~/.local/bin/power_menuyad.sh")), desc="Show power menu"),
+    Key([mod], "x", lazy.spawn(os.path.expanduser("~/.config/rofi/scripts/powermenu_t2")), desc="Show power menu"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    #Key([mod], "r", lazy.spawn("dmenu_run"), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("/home/sk/.local/bin/dmenu-launcher"), desc="Launch dmenu with custom settings"),
+
     # Custom Keybindings
     Key([mod], "p", lazy.spawn("rofi -show drun"), desc="Launch Rofi (application launcher)"),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"), desc="Increase volume"),
@@ -205,7 +208,7 @@ screens = [
                     foreground=colors["primary_accent"],
                     background=colors["bar_bg"],
                     padding=10,
-                    mouse_callbacks={"Button1": lazy.spawn("rofi -show drun")},
+                    mouse_callbacks={"Button1": lazy.spawn(os.path.expanduser("~/.config/rofi/scripts/launcher_t3"))},
                 ),
                 widget.GroupBox(
                     margin_y=3,
@@ -312,6 +315,17 @@ screens = [
                 #      padding=2, #
                 #      fontsize=16, #
                 # ),
+                # widget.TextBox(
+                #     text="| ", #
+                #     foreground=colors["gray_dark"], #
+                #     background=colors["bar_bg"], #
+                #     padding=2, #
+                #     fontsize=16, #
+                # ),
+                widget.Systray(
+                    background=colors["bar_bg"], #
+                    padding=5, #
+                ),
                 widget.Bluetooth(
                     default_text=' {connected_devices}',
                     default_show_battery=True,
@@ -319,7 +333,7 @@ screens = [
                     mouse_callbacks={
                          "Button1": lazy.spawn(f"{terminal} -e bluetui"),
                     },
-                    foreground=colors["tertiary_accent"], #
+                    foreground=colors["white"], #
                     background=colors["bar_bg"], #
                     padding=5, 
 
@@ -358,17 +372,6 @@ screens = [
                     }
                 ),
                 widget.TextBox(
-                    text="| ", #
-                    foreground=colors["gray_dark"], #
-                    background=colors["bar_bg"], #
-                    padding=2, #
-                    fontsize=16, #
-                ),
-                widget.Systray(
-                    background=colors["bar_bg"], #
-                    padding=5, #
-                ),
-                widget.TextBox(
                     text=" |", #
                     foreground=colors["gray_dark"], #
                     background=colors["bar_bg"], #
@@ -381,7 +384,7 @@ screens = [
                     background=colors["bar_bg"], #
                     padding=10, #
                     mouse_callbacks={
-                        "Button1": lazy.spawn("/home/sk/.local/bin/power_menuyad.sh")
+                        "Button1": lazy.spawn( os.path.expanduser("~/.config/rofi/scripts/powermenu_t2"))
                     } #
                 ),
                 widget.TextBox(

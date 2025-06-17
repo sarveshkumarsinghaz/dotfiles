@@ -4,10 +4,10 @@
 setxkbmap -option caps:ctrl_modifier &
 
 # Set wallpaper using swaybg
-feh --no-fehbg --bg-fill '/home/sk/Downloads/wallhaven1.png'
+feh --no-fehbg --bg-fill '/home/sk/dotfiles/wallapapers/wallhaven9.png'
 
 # Start polkit-gnome authentication agent
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/polkit-kde-authentication-agent-1 &
 
 #Appleits and numlock on 
 numlockx on &
