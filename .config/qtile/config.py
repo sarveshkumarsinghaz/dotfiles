@@ -57,7 +57,7 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "d", lazy.spawn("dolphin"), desc="Open dolphin window"),
+    Key([mod], "a", lazy.spawn("dolphin"), desc="Open dolphin window"),
     Key([mod], "w", lazy.spawn("brave --password-store=basic %U"), desc="Launch Chromium"),
     Key([mod], "e", lazy.spawn(f"{terminal} -e yazi"), desc="File Launcher"),
     Key([mod, "shift"], "e", lazy.spawn(f"{terminal} --hold sudo yazi"), desc="File Launcher"),
@@ -67,11 +67,10 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    #Key([mod], "r", lazy.spawn("dmenu_run"), desc="Spawn a command using a prompt widget"),
-    Key([mod], "r", lazy.spawn("/home/sk/.local/bin/dmenu-launcher"), desc="Launch dmenu with custom settings"),
+    Key([mod], "d", lazy.spawn("/home/sk/.local/bin/dmenu-launcher"), desc="Launch dmenu with custom settings"),
 
     # Custom Keybindings
-    Key([mod], "p", lazy.spawn("rofi -show drun"), desc="Launch Rofi (application launcher)"),
+    Key([mod], "s", lazy.spawn(os.path.expanduser("~/dotfiles/.config/rofi/scripts/launcher_t3")), desc="Launch Rofi (application launcher)"),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"), desc="Increase volume"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"), desc="Decrease volume"),
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Toggle mute"),

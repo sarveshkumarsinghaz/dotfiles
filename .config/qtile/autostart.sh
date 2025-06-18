@@ -1,4 +1,5 @@
 #!/bin/sh
+dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP XDG_SESSION_TYPE &
 
 # Remap Caps Lock to Control
 setxkbmap -option caps:ctrl_modifier &
