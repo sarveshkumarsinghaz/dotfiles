@@ -1,0 +1,5 @@
+[General]
+theme=Dark181824
+
+[Applications]
+Dark181824=qt5ct, qt6ct, *
