@@ -4,6 +4,7 @@
   min-height: 0;
   font-family: CaskaydiaMono Nerd Font;
   font-size: 12px;
+  font-weight: bold;
 }
 
 #waybar { 
@@ -64,11 +65,12 @@
 #network,
 #bluetooth,
 #pulseaudio,
-#backlight,
-#clock {
+#clock,
+#backlight{
   min-width: 20px;
-  margin-right: 13px;
+  margin-right: 5px;
   font-size: 12px;
+  font-weight: bold;
   border-radius: 5px;
   padding: 2px 4px;
 }
@@ -77,12 +79,17 @@
 #custom-quit,
 #custom-lock,
 #custom-reboot,
+#custom-user-only,
 #custom-shutdown {
   min-width: 20px;
   font-size: 12px;
+  font-weight:bold;
   padding: 2px 4px;
 }
 
+#tray{
+  padding: 2px 4px;
+}
 tooltip {
   padding: 2px;
   border-radius: 5px;

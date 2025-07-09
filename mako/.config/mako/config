@@ -1,6 +1,6 @@
 text-color=#cad3f5
 border-color=#c6d0f5
-background-color=#24273a
+background-color=rgba(14,20,25,0.80)
 width=420
 height=110
 padding=10

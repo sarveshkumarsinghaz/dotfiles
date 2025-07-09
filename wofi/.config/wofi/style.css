@@ -1,6 +1,6 @@
 @define-color	selected-text  #8caaee;
 @define-color	text  #c6d0f5;
-@define-color	base  #181824;
+@define-color	base  rgba(14, 20, 25, 0.95);
 
 * {
   font-family: 'CaskaydiaMono Nerd Font', monospace;
@@ -11,7 +11,6 @@ window {
   margin: 0px;
   padding: 20px;
   background-color: @base;
-  opacity: 0.95;
 }
 
 #inner-box {
