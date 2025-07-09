@@ -1,0 +1,209 @@
+{
+  "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "height": 26,
+    "rounded": 5,
+    "margin-top": 4,
+    "margin-left": 4,
+    "margin-right": 4,
+    "margin-bottom": 0,
+    "modules-left": [
+      "hyprland/workspaces",
+      "custom/separator",
+      "wlr/taskbar"
+    ],
+    "modules-center": [
+    ],
+    "modules-right": [
+      "tray",
+      "custom/separator",
+      "custom/dropbox",
+      "bluetooth",
+      "network",
+      "pulseaudio",
+      "cpu",
+      "backlight",
+      "custom/separator",
+      "clock",
+      "group/group-power"
+    ],
+    "hyprland/window": {
+        "format": "{title}"
+    },
+    "backlight": {
+      "device": "intel_backlight",
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/display-brightness-{icon}.svg' width='16'/>",
+      "format-icons": ["low", "medium", "high"]
+    },
+    "wlr/taskbar": {
+      "format": "{icon} {title}",
+      "icon-size": 16,
+      "tooltip-format": "{title}",
+      "on-click": "activate",
+      "on-click-middle": "close",
+      "ignore-list": [
+          "kitty"
+      ]
+   },
+    "custom/focused-window": {
+    "format": "[ {} ]",
+    "exec": "hyprctl activewindow -j | jq -r '.title' | head -c 25",
+    "interval": 1,
+    "tooltip": false
+    },
+     "group/group-power": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+          },
+          "modules": [
+            "custom/user-only",
+            "custom/separator",
+            "custom/shutdown",
+            "custom/separator",
+            "custom/quit",
+            "custom/separator",
+            "custom/lock",
+            "custom/separator",
+            "custom/reboot"
+          ]
+    },
+    "custom/user-only": {
+    "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/avatar-default.svg' width='16'/> {}",
+    "exec": "echo $USER",
+    "interval": 3600,
+    "tooltip": false
+    },
+    "custom/quit": {
+        "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/actions/application-exit.svg' width='16'/>",
+        "tooltip-format": "Exit",
+        "on-click": "hyprctl dispatch exit"
+    },
+    "custom/lock": {
+        "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/actions/system-lock-screen.svg' width='16'/>",
+        "tooltip-format": "Lock",
+        "on-click": "hyprlock"
+    },
+    "custom/reboot": {
+        "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/actions/system-reboot.svg' width='16'/>",
+        "tooltip-format": "Reboot",
+        "on-click": "reboot"
+    },
+    "custom/shutdown": {
+        "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/actions/system-shutdown.svg' width='16'/>",
+        "tooltip-format": "Shutdown",
+        "on-click": "shutdown now"
+    },
+    "tray": {
+            "icon-size": 16,
+            "spacing": 10,
+            "show-passive-items": true
+    },
+    "custom/separator": {
+    "format": "|",
+    "tooltip": false
+    },
+    "hyprland/workspaces": {
+      "on-click": "activate",
+      "format": "{icon}",
+      "format-icons": {
+        "default": "",
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9"
+      },
+      "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": []
+      }
+    },
+    "cpu": {
+      "interval": 5,
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/apps/cpu-x.svg' width='16'/>",
+      "on-click": "kitty -e btop"
+    },
+    "clock": {
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/apps/preferences-system-time.svg' width='16'/> {:%A %H:%M}",
+      "format-alt": "<img src='/usr/share/icons/Papirus-Dark/24x24/apps/preferences-system-time.svg' width='16'/> {:%d %B W%V %Y}",
+      "tooltip": false,
+      "on-click":"kitty -e calcure"
+    },
+    "network": {
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/network-wired.svg' width='16'/>",
+      "format-wifi": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/network-wireless-signal-excellent.svg' width='16'/>",
+      "format-ethernet": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/network-wired.svg' width='16'/>",
+      "format-disconnected": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/network-offline.svg' width='16'/>",
+      "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+      "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+      "tooltip-format-disconnected": "Disconnected",
+      "interval": 3,
+      "nospacing": 1,
+      "on-click": "kitty -e nmtui"
+    },
+    "battery": {
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/battery-good.svg' width='16'/>",
+      "format-discharging": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/battery-{capacity}.svg' width='16'/>",
+      "format-charging": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/battery-charging.svg' width='16'/>",
+      "format-plugged": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/battery-charging.svg' width='16'/>",
+      "format-full": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/battery-full.svg' width='16'/>",
+      "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+      "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+      "interval": 5,
+      "states": {
+        "warning": 20,
+        "critical": 10
+      }
+    },
+    "bluetooth": {
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/bluetooth-active.svg' width='16'/>",
+      "format-disabled": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/bluetooth-disabled.svg' width='16'/>",
+      "format-connected": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/bluetooth-active.svg' width='16'/>",
+      "tooltip-format": "Devices connected: {num_connections}",
+      "on-click": "kitty -e bluetui"
+    },
+    "pulseaudio": {
+    "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/audio-volume-high.svg' width='16'/>",
+    "format-bluetooth": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/audio-volume-high.svg' width='16'/>",
+    "format-muted": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/audio-volume-muted.svg' width='16'/>",
+    "states": {
+        "high": 70,
+        "medium": 30,
+        "low": 0
+    },
+    "scroll-step": 3,
+    "on-click": "kitty -e wiremix -v output",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+       "power-profiles-daemon": {
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/status/battery-{icon}.svg' width='16'/>",
+      "tooltip-format": "Power profile: {profile}",
+      "tooltip": true,
+      "format-icons": {
+        "power-saver": "low",
+        "balanced": "good",
+        "performance": "full"
+      }
+    },
+    "custom/dropbox": {
+      "format": "<img src='/usr/share/icons/Papirus-Dark/24x24/apps/dropbox.svg' width='16'/>",
+      "on-click": "nautilus ~/Dropbox",
+      "exec": "dropbox-cli status",
+      "return-type": "text",
+      "interval": 5,
+      "tooltip": true,
+      "tooltip-format": "{}"
+    }
+}
