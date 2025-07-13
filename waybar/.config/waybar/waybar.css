@@ -1,0 +1,11 @@
+/* {
+  color: #cdd6f4;
+  background-color: #0e1419;
+  border-radius: 5px;
+}*/
+
+* {
+  color: #cdd6f4;
+  background-color: rgba(14, 20, 25, 0.95); /* This line makes it transparent */
+  border-radius: 5px;
+}
