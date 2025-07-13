@@ -30,7 +30,7 @@
   "hyprland/window": {
     "format": "{title}",
     "rewrite": {
-		"~ - fish": "kitty - home"
+		"~ - fish": "~/home - fish"
 	}
   },
   "backlight": {
@@ -97,7 +97,7 @@
       "on-click": "shutdown now"
   },
   "tray": {
-          "icon-size": 16,
+          "icon-size": 14,
           "spacing": 15,
           "show-passive-items": true
   },
@@ -148,7 +148,7 @@
     "on-click": "kitty -e nmtui"
   },
   "bluetooth": {
-    "format": " 󰂯",
+    "format": "  󰂯",
     "format-disabled": "󰂲",
     "format-connected": "󰂱",
     "tooltip-format": "Devices connected: {num_connections}",
