@@ -36,6 +36,7 @@ yay -S --needed --noconfirm \
   fzf \
   kitty \
   fish \
+  zoxide \
   mako \
   tmux \
   yazi \
@@ -44,7 +45,6 @@ yay -S --needed --noconfirm \
   bluetui \
   calcure \
   waybar
-
 
 cd ~/hyprdots
 echo "applying dotfiles..."

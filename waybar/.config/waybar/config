@@ -28,10 +28,13 @@
     "group/group-power"
   ],
   "hyprland/window": {
-      "format": "{title}"
+    "format": "{title}",
+    "rewrite": {
+		"~ - fish": "kitty - home"
+	}
   },
   "backlight": {
-    "device": "intel_backlight",
+    "device": "amd_backlight",
     "format": "{icon}",
     "format-icons": ["󰃞", "󰃟", "󰃠"]
   },
@@ -41,9 +44,6 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": [
-        "kitty"
-    ]
   },
   "clock": {
       "format": "{:%H:%M}",
@@ -98,7 +98,7 @@
   },
   "tray": {
           "icon-size": 16,
-          "spacing": 10,
+          "spacing": 15,
           "show-passive-items": true
   },
   "custom/separator": {
@@ -168,7 +168,7 @@
       "phone-muted": "󰄝",
       "portable": "󰦧",
       "car": "󰄋",
-      "default": ["󰕿", "󰖀", "󰕾 "]
+      "default": ["󰕾 "]
   },
   "scroll-step": 3,
   "on-click": "kitty -e wiremix -v output",

@@ -66,6 +66,7 @@
 #bluetooth,
 #pulseaudio,
 #clock,
+#custom-user-only,
 #backlight{
   min-width: 20px;
   margin-right: 5px;
@@ -75,14 +76,21 @@
   padding: 2px 4px;
 }
 
+#cpu,
+#bluetooth,
+#pulseaudio{
+  font-size: 14px;
+}
+
+
+
 /* Specific adjustments for power group icons */
 #custom-quit,
 #custom-lock,
 #custom-reboot,
-#custom-user-only,
 #custom-shutdown {
   min-width: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight:bold;
   padding: 2px 4px;
 }
