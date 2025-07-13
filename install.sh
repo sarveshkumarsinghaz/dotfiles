@@ -45,20 +45,7 @@ yay -S --needed --noconfirm \
   calcure \
   waybar
 
-# Check if yay installation was successful (you might want more robust checks)
-if [ $? -ne 0 ]; then
-  echo "Error: Package installation with yay failed. Exiting."
-  exit 1
-fi
 
-# --- Clone and Stow Dotfiles ---
-echo "Cloning dotfiles repository..."
-git clone -b hypr https://github.com/sarveshkumarsinghaz/dotfiles ~/hyprdots
-# Check if cloning was successful
-if [ ! -d "hyprdots" ]; then
-  echo "Error: 'hyprdots' directory not found after cloning. Exiting."
-  exit 1
-fi
 cd ~/hyprdots
 echo "applying dotfiles..."
 
